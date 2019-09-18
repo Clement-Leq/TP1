@@ -97,7 +97,7 @@ public class Personnage {
     	System.out.println("   Initiative : " + init);
     	
     	if(estMort == true) System.out.println("   Statut : Mort\n ");
-    	else System.out.println("   Statut : Vivant\n");
+    	else System.out.println("   Statut : Vivant\n"); 
     }
 
 	// -------------------------------------------------------------------------

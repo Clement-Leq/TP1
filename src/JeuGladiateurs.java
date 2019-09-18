@@ -25,7 +25,6 @@ public class JeuGladiateurs {
         	for(int i = 0; i < 100; i++) {
         		
         	}
-        	System.out.println("   Statut : Vivant\n");
         	
         	System.out.println("   Statut : Mort\n");
         	personnage1.setEstMort(true);
