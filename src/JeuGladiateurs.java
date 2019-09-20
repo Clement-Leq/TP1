@@ -18,17 +18,43 @@ public class JeuGladiateurs {
         personnage2.afficherInfosPersonnage();
         System.out.println("<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>\r\n" + 
         		">>>>> Que le combat commence ! <<<<<\r\n" + 
-        		"<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>");
+        		"<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>\r\n");
         
         while(!personnage1.isEstMort() && !personnage2.isEstMort()) {
         	
-        	for(int i = 0; i < 100; i++) {
+        	tour.afficheTour();
+        	
+        	for(int ini = 0; ini < 100; ini++) {
         		
+        		if(personnage1.getInit() == ini) {
+        			personnage1.frapperPersonnage(personnage2);
+        			if(personnage2.getPv() <= 0) {
+        				personnage2.setPv(0);
+        				personnage2.setEstMort(true);
+        				continue;
+        			}
+        		}
+        		if(personnage2.getInit() == ini) {
+        			personnage2.frapperPersonnage(personnage1);
+        			if(personnage1.getPv() <= 0) {
+        				personnage1.setPv(0);
+        				personnage1.setEstMort(true);
+        				continue;
+        			}
+        		}
         	}
         	
-        	System.out.println("   Statut : Mort\n");
-        	personnage1.setEstMort(true);
+    		affichage.afficherSeparateurInfosPerso();
+    		
+        	personnage1.afficherInfosPersonnage();
+        	personnage2.afficherInfosPersonnage();
+        	
+        	personnage1.setNewIniRandom();
+    		personnage2.setNewIniRandom();
+        	tour.augmenteTour();
+    		affichage.afficherSeparateurDeTour();
         }
+        affichage.afficheVictoire(personnage1, personnage2);
     }
 
 }

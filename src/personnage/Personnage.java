@@ -1,12 +1,15 @@
 
 package personnage;
 
+import java.util.Random;
+
 public class Personnage {
 	private String nom;
 	private int attMax;
 	private int def;
 	private int pv;
 	private int init;
+	private int attaque;
 	boolean estMort = false;
 	
     // -------------------------------------------------------------------------
@@ -55,6 +58,10 @@ public class Personnage {
 		return init;
 	}
     
+    public int getAttaque() {
+		return attaque;
+	}
+    
     public boolean isEstMort() {
 		return estMort;
 	}
@@ -81,7 +88,11 @@ public class Personnage {
     public void setInit(int init) {
 		this.init = init;
 	}
-    
+
+	public void setAttaque(int attaque) {
+		this.attaque = attaque;
+	}
+
     public void setEstMort(boolean estMort) {
 		this.estMort = estMort;
 	}
@@ -91,12 +102,12 @@ public class Personnage {
     public void afficherInfosPersonnage() {
         // TODO : Afficher les infos du personnage, tel que montré dans l'énoncé
     	System.out.println(nom);
-    	System.out.println("   Attaque : " + attMax);
-    	System.out.println("   D�fense : " + def);
-    	System.out.println("   Points de vie : " + pv);
-    	System.out.println("   Initiative : " + init);
+    	System.out.println("   Attaque : " + getAttMax());
+    	System.out.println("   D�fense : " + getDef());
+    	System.out.println("   Points de vie : " + getPv());
+    	System.out.println("   Initiative : " + getInit());
     	
-    	if(estMort == true) System.out.println("   Statut : Mort\n ");
+    	if(isEstMort() == true) System.out.println("   Statut : Mort\n ");
     	else System.out.println("   Statut : Vivant\n"); 
     }
 
@@ -105,7 +116,10 @@ public class Personnage {
     private int attaqueCalcul() {
         // TODO : Retourner la valeur de l'attaque du personnage.
         // Cette valeur est trouvée aléatoirement et doit se situer entre ZÉRO et valeurMaxAttaque.
-        return 0;
+    	Random rand =  new Random();
+    	this.attaque = rand.nextInt(getAttMax() - 0);
+    	setAttaque(attaque);
+    	return 0;
     }
 
     // -------------------------------------------------------------------------
@@ -114,11 +128,26 @@ public class Personnage {
         // TODO : Récupérer la valeur d'attaque pour ce tour, calculer les dégats,
         //modifier les points de vie du personnage cible, afficher les détails
         // sur l'attaque, tel que montré dans l'énoncé.
+    	int degats;
+    	attaqueCalcul();
+    	degats = getAttaque() - personnageCible.getDef();
+    	
+    	if(degats <= 0) {
+    		System.out.println(getNom() + " essaye d'attaquer mais il �choue ... \n");
+    	}
+    	else {
+    		System.out.println(getNom() + " attaque avec une puissance de : " + getAttaque());
+    		System.out.println(personnageCible.getNom() + " a une d�fense de : " + personnageCible.getDef());
+        	System.out.println("Les d�g�ts sont de : " + degats + "\n");
+        	personnageCible.setPv(personnageCible.getPv() - degats);
+    	}
     }
 
     // -------------------------------------------------------------------------
     
     public void setNewIniRandom() {
         // TODO : Modifier de façon aléatoire la valeur INI du personnage.
+    	Random rand =  new Random();
+    	this.init = rand.nextInt(100-0);
     }
 }
