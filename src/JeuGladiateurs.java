@@ -18,7 +18,7 @@ public class JeuGladiateurs {
         personnage2.afficherInfosPersonnage();
         System.out.println("<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>\r\n" + 
         		">>>>> Que le combat commence ! <<<<<\r\n" + 
-        		"<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>\r\n");
+        		"<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>");
         
         while(!personnage1.isEstMort() && !personnage2.isEstMort()) {
         	
@@ -31,15 +31,16 @@ public class JeuGladiateurs {
         			if(personnage2.getPv() <= 0) {
         				personnage2.setPv(0);
         				personnage2.setEstMort(true);
-        				continue;
         			}
+        		}
+        		if(personnage1.isEstMort() || personnage2.isEstMort()) {
+        			break;
         		}
         		if(personnage2.getInit() == ini) {
         			personnage2.frapperPersonnage(personnage1);
         			if(personnage1.getPv() <= 0) {
         				personnage1.setPv(0);
         				personnage1.setEstMort(true);
-        				continue;
         			}
         		}
         	}

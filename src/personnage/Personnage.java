@@ -9,8 +9,7 @@ public class Personnage {
 	private int def;
 	private int pv;
 	private int init;
-	private int attaque;
-	boolean estMort = false;
+	private boolean estMort = false;
 	
     // -------------------------------------------------------------------------
 	
@@ -58,10 +57,6 @@ public class Personnage {
 		return init;
 	}
     
-    public int getAttaque() {
-		return attaque;
-	}
-    
     public boolean isEstMort() {
 		return estMort;
 	}
@@ -89,10 +84,6 @@ public class Personnage {
 		this.init = init;
 	}
 
-	public void setAttaque(int attaque) {
-		this.attaque = attaque;
-	}
-
     public void setEstMort(boolean estMort) {
 		this.estMort = estMort;
 	}
@@ -116,10 +107,9 @@ public class Personnage {
     private int attaqueCalcul() {
         // TODO : Retourner la valeur de l'attaque du personnage.
         // Cette valeur est trouv√©e al√©atoirement et doit se situer entre Z√âRO et valeurMaxAttaque.
-    	Random rand =  new Random();
-    	this.attaque = rand.nextInt(getAttMax() - 0);
-    	setAttaque(attaque);
-    	return 0;
+    	Random rand = new Random();
+    	int attaque = rand.nextInt(getAttMax() - 0);
+    	return attaque;
     }
 
     // -------------------------------------------------------------------------
@@ -129,14 +119,14 @@ public class Personnage {
         //modifier les points de vie du personnage cible, afficher les d√©tails
         // sur l'attaque, tel que montr√© dans l'√©nonc√©.
     	int degats;
-    	attaqueCalcul();
-    	degats = getAttaque() - personnageCible.getDef();
+    	int valeurAttaque = attaqueCalcul();
+    	degats = valeurAttaque - personnageCible.getDef();
     	
     	if(degats <= 0) {
     		System.out.println(getNom() + " essaye d'attaquer mais il Èchoue ... \n");
     	}
     	else {
-    		System.out.println(getNom() + " attaque avec une puissance de : " + getAttaque());
+    		System.out.println(getNom() + " attaque avec une puissance de : " + valeurAttaque);
     		System.out.println(personnageCible.getNom() + " a une dÈfense de : " + personnageCible.getDef());
         	System.out.println("Les dÈg‚ts sont de : " + degats + "\n");
         	personnageCible.setPv(personnageCible.getPv() - degats);
