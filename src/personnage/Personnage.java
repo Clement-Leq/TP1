@@ -92,7 +92,7 @@ public class Personnage {
     
     public void afficherInfosPersonnage() {
         // TODO : Afficher les infos du personnage, tel que montré dans l'énoncé
-    	System.out.println(nom);
+    	System.out.println(getNom());
     	System.out.println("   Attaque : " + getAttMax());
     	System.out.println("   D�fense : " + getDef());
     	System.out.println("   Points de vie : " + getPv());
@@ -104,7 +104,7 @@ public class Personnage {
 
 	// -------------------------------------------------------------------------
     
-    private int attaqueCalcul() {
+    public int attaqueCalcul() {
         // TODO : Retourner la valeur de l'attaque du personnage.
         // Cette valeur est trouvée aléatoirement et doit se situer entre ZÉRO et valeurMaxAttaque.
     	Random rand = new Random();
@@ -138,6 +138,6 @@ public class Personnage {
     public void setNewIniRandom() {
         // TODO : Modifier de façon aléatoire la valeur INI du personnage.
     	Random rand =  new Random();
-    	this.init = rand.nextInt(100-0);
+    	setInit(rand.nextInt(100-0));
     }
 }
