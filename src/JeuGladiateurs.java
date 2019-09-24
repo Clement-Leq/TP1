@@ -1,4 +1,5 @@
 
+import personnage.Mirmillon;
 import personnage.Personnage;
 import personnage.Retiaire;
 import combat.CompteurDeTour;
@@ -12,7 +13,7 @@ public class JeuGladiateurs {
     public static void main(String[] args) {
         CompteurDeTour tour = new CompteurDeTour();
         AffichageEcran affichage = new AffichageEcran();
-        Personnage personnage1 = new Personnage("Bob le malchanceux", 15, 15, 70, 15); //L'initialisation du personnage doit se faire dans le constructeur
+        Mirmillon personnage1 = new Mirmillon("Bob le malchanceux", 15, 15, 70, 15); //L'initialisation du personnage doit se faire dans le constructeur
         Retiaire personnage2 = new Retiaire("Igor l'empaleur", 25, 5, 100, 30); //L'initialisation du personnage doit se faire dans le constructeur
         
         personnage1.afficherInfosPersonnage();
@@ -34,6 +35,12 @@ public class JeuGladiateurs {
         				personnage2.setEstMort(true);
         				break;
         			}
+        			else if(personnage1.isDecapite() == true) {
+        				System.out.println(personnage1.getNom() + " frappe de nouveau !\n");
+        				personnage1.frapperPersonnage(personnage2);
+        				personnage1.setDecapite(false);
+        				
+        			}
         		}
         		if(personnage2.getInit() == ini) {
         			personnage2.frapperPersonnage(personnage1);
@@ -49,7 +56,7 @@ public class JeuGladiateurs {
     		
         	personnage1.afficherInfosPersonnage();
         	personnage2.afficherInfosPersonnage();
-        	personnage1.setNewIniRandom();
+        	personnage1.randomInit();
     		personnage2.setNewIniRandom();
 
         	tour.augmenteTour();

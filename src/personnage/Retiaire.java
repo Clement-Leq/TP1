@@ -36,15 +36,7 @@ public class Retiaire extends Personnage {
 	// -------------------------------------------------------------------------
 
 	public void afficherInfosPersonnage() {
-		System.out.println(getNom());
-    	System.out.println("   Attaque : " + getAttMax());
-    	System.out.println("   Défense : " + getDef());
-    	System.out.println("   Points de vie : " + getPv());
-    	System.out.println("   Initiative : " + getInit());
-    	
-    	if(isEstMort() == true) System.out.println("   Statut : Mort");
-    	else System.out.println("   Statut : Vivant"); 
-    	
+		super.afficherInfosPersonnage(); 
     	System.out.println("   Classe : " + getClasse() + "\n");
 	}
 	

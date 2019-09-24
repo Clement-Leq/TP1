@@ -98,8 +98,8 @@ public class Personnage {
     	System.out.println("   Points de vie : " + getPv());
     	System.out.println("   Initiative : " + getInit());
     	
-    	if(isEstMort() == true) System.out.println("   Statut : Mort\n ");
-    	else System.out.println("   Statut : Vivant\n"); 
+    	if(isEstMort() == true) System.out.println("   Statut : Mort");
+    	else System.out.println("   Statut : Vivant"); 
     }
 
 	// -------------------------------------------------------------------------
