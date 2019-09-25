@@ -30,35 +30,22 @@ public class JeuGladiateurs {
         		
         		if(personnage1.getInit() == ini) {
         			personnage1.frapperPersonnage(personnage2);
-        			if(personnage2.getPv() <= 0) {
-        				personnage2.setPv(0);
-        				personnage2.setEstMort(true);
-        				break;
-        			}
-        			else if(personnage1.isDecapite() == true) {
-        				System.out.println(personnage1.getNom() + " frappe de nouveau !\n");
-        				personnage1.frapperPersonnage(personnage2);
-        				personnage1.setDecapite(false);
-        				
-        			}
+        			personnage1.frapperPersonnage(personnage2);
+        			if(personnage2.getPv() <= 0) break;
         		}
         		if(personnage2.getInit() == ini) {
         			personnage2.frapperPersonnage(personnage1);
-        			if(personnage1.getPv() <= 0) {
-        				personnage1.setPv(0);
-        				personnage1.setEstMort(true);
-        				break;
-        			}
+        			if(personnage1.getPv() <= 0) break;
         		}
         	}
         	
     		affichage.afficherSeparateurInfosPerso();
-    		
         	personnage1.afficherInfosPersonnage();
         	personnage2.afficherInfosPersonnage();
+        	
         	personnage1.randomInit();
     		personnage2.setNewIniRandom();
-
+    		
         	tour.augmenteTour();
     		affichage.afficherSeparateurDeTour();
         }

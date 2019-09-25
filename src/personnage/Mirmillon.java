@@ -4,7 +4,6 @@ import java.util.Random;
 
 public class Mirmillon extends Personnage {
 	private String classe = "Mirmillon";
-	private boolean decapite = false;
 	
 	// -------------------------------------------------------------------------
 	
@@ -19,20 +18,11 @@ public class Mirmillon extends Personnage {
 		return classe;
 	}
 	
-	public boolean isDecapite() {
-		return decapite;
-	}
-
 	// -------------------------------------------------------------------------
 	
 	public void setClasse(String classe) {
 		this.classe = classe;
 	}
-	
-	public void setDecapite(boolean decapite) {
-		this.decapite = decapite;
-	}
-
 
 	// -------------------------------------------------------------------------
 	
@@ -48,37 +38,32 @@ public class Mirmillon extends Personnage {
     	int degats;
     	int valeurAttaque = attaqueCalcul();
     	degats = valeurAttaque - personnageCible.getDef();
-    	if (degats <= 0) {
-    		degats = 0;
-    	}
-    	personnageCible.setPv(personnageCible.getPv() - degats);
-    	
+    	if (degats <= 0) degats = 0;
     	
     	if(personnageCible.getPv() > 0){
-    		if(degats <= 0) {
+    		if(degats == 0) {
         		System.out.println(getNom() + " essaye d'attaquer mais il échoue ... \n");
-        		setDecapite(true);
         	}
         	else {
         		System.out.println(getNom() + " attaque avec une puissance de : " + valeurAttaque);
         		System.out.println(personnageCible.getNom() + " a une défense de : " + personnageCible.getDef());
             	System.out.println("Les dégâts sont de : " + degats + "\n");
-            	setDecapite(true);
+            	personnageCible.setPv(personnageCible.getPv() - degats);
+            	if (personnageCible.getPv() <= 0) {
+            		personnageCible.setPv(0);
+            		personnageCible.setEstMort(true);
+            	}
         	}
     	}
-    	else if (isDecapite() || personnageCible.getPv() <= 0) {
-        		System.out.println(getNom() + " décapite " + personnageCible.getNom() + " avec violence !\n");
-        		setDecapite(true);
+    	else {
+        	System.out.println(getNom() + " décapite " + personnageCible.getNom() + " avec violence !\n");
     	}
-    	
     }
-    	
 	
 	// -------------------------------------------------------------------------
 	
-	public int randomInit(){
+	public void randomInit(){
 		Random rand = new Random();
-		int ini = rand.nextInt(30-0);
-		return ini;
+		setInit(rand.nextInt(30-0));
 	}
 }

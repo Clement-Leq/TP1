@@ -50,8 +50,8 @@ public class Retiaire extends Personnage {
     		setFilet(false);
     		if(randomFilet() <= 10) {
     			System.out.println("Son filet attrape " + personnageCible.getNom() + " et il l’empale sauvagement avec sa lance.\n");
-    			personnageCible.setEstMort(true);
     			personnageCible.setPv(0);
+    			personnageCible.setEstMort(true);
     		}
     		else {
     			System.out.println("Le filet n'atteint pas sa cible ... \n");
@@ -72,6 +72,10 @@ public class Retiaire extends Personnage {
         		System.out.println(personnageCible.getNom() + " a une défense de : " + personnageCible.getDef());
             	System.out.println("Les dégâts sont de : " + degats + "\n");
             	personnageCible.setPv(personnageCible.getPv() - degats);
+            	if(personnageCible.getPv() <= 0) {
+    				personnageCible.setPv(0);
+    				personnageCible.setEstMort(true);
+            	}
         	}
     	}
     	
