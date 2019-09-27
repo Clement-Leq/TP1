@@ -78,7 +78,7 @@ public class Retiaire extends Personnage {
         		System.out.println(personnageCible.getNom() + " a une défense de : " + personnageCible.getDef());
             	System.out.println("Les dégâts sont de : " + degats + "\n");
             	personnageCible.setPv(personnageCible.getPv() - degats);
-            	//On tue le personnage ici si ses pv arrivent à 0 ou moins (ça nous évite de le faire dans le main)
+            	//On tue l'ennemi ici si ses pv arrivent à 0 ou moins (ça nous évite de le faire dans le main)
             	if(personnageCible.getPv() <= 0) {
     				personnageCible.setPv(0);
     				personnageCible.setEstMort(true);
