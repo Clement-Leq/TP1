@@ -29,16 +29,21 @@ public class JeuGladiateurs {
         	for(int ini = 0; ini <= 100; ini++) {
         		
         		if(personnage1.getInit() == ini) {
+        			
         			personnage1.frapperPersonnage(personnage2);
-        			personnage1.frapperPersonnage(personnage2);
+        			
+        			//On met un "break" afin de sortir de notre boucle si notre personnage tue son ennemi
+        			//en premier pour ne pas que l'ennemi puis attaqué après
         			if(personnage2.getPv() <= 0) break;
         		}
         		if(personnage2.getInit() == ini) {
         			personnage2.frapperPersonnage(personnage1);
+        			
+        			//Même raison que le premier "break"
         			if(personnage1.getPv() <= 0) break;
         		}
         	}
-        	
+        	//On fait un joli affichage pour que  le combat soit compréhensible et l'interface soit propre :D
     		affichage.afficherSeparateurInfosPerso();
         	personnage1.afficherInfosPersonnage();
         	personnage2.afficherInfosPersonnage();
@@ -49,6 +54,7 @@ public class JeuGladiateurs {
         	tour.augmenteTour();
     		affichage.afficherSeparateurDeTour();
         }
+        //Une fois sorti de la boucle de combat on affiche la victoire du combatant gagnant cette épreuve de force.
         affichage.afficheVictoire(personnage1, personnage2);
     }
 
